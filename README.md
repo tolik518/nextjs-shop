@@ -1,3 +1,32 @@
+# NextJS Shop
+
+This is a project to track my progress of the second part of the ["Next.js by Example"-course](https://flyeralarm.udemy.com/course/nextjs-by-example/) on udemy.
+
+The course is for NextJS 11 with plain JS, but I'm using NextJS 13 and TS as this is the latest version as of writing this.
+
+
+## Features
+-  ¯\\\_(ツ)\_/¯
+
+## How to run dev server
+
+1. Clone the repo
+2. Run `npm install`
+3. Run `npm run dev`
+4. Open `localhost:3000` in your browser
+
+## How to deploy
+
+1. Clone the repo
+2. Run `npm install`
+3. Run `npm run build`
+4. Run `npm run start`
+5. Open `localhost:3000` in your browser
+
+
+
+# Original Next.js README.md
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
