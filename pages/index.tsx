@@ -1,8 +1,20 @@
 import Head from "next/head";
 import React from "react";
 import Title from "../components/Title";
+import * as prd from "../lib/products"
 
-const HomePage: React.FC = () => {
+export async function getStaticProps() {
+  const products = await prd.getProductsFromApi();
+
+  return {
+    props: {
+      products
+    }
+  }
+}
+
+const HomePage: React.FC = ({products}: any) => {
+  console.log(products);
   return (
     <>
       <Head>
@@ -11,8 +23,12 @@ const HomePage: React.FC = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className="p-6">
-        <Title>NextJS Shop</Title>
-        <p className="dark:text-gray-300">Shop content</p>
+        <Title>Retro Consoles Shop</Title>
+        <ul className="dark:text-gray-300">
+          {products.map((product) => (
+            <li key={product.id}>{product.title}</li>
+          ))}
+        </ul>
       </main>
     </>
   );
