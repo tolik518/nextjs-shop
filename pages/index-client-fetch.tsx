@@ -7,9 +7,11 @@ import * as prd from "../lib/products"
 const HomePage: React.FC = () => {
   const [products, setProducts] = React.useState([]);
   useEffect(() => {
-    prd.getProductsFromApi().then((products) => {
-      setProducts(products);
-    });
+    (async() => {
+    const response = await fetch('/api/products');
+    const products = await response.json();
+    setProducts(products);
+    })();
   }, []);
 
   console.log(products);

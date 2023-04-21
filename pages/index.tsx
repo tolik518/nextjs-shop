@@ -15,7 +15,7 @@ export async function getStaticProps() {
 }
 
 const HomePage: React.FC = ({products}: any) => {
-  console.log(products);
+
   return (
     <>
       <Head>
@@ -24,7 +24,7 @@ const HomePage: React.FC = ({products}: any) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className="p-6">
-        <Title>Retro Consoles Shop</Title>
+        <Title>Retro Stuff Shop</Title>
         <ul className="dark:text-gray-300">
           {products.map((product) => (
             <li key={product.id}>{product.title}</li>
