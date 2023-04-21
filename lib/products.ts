@@ -1,6 +1,6 @@
 import { fetchFromApi } from "./api";
 
-const CMS_URL = "http://localhost:1337";
+const { STRAPI_URL } = process.env;
 
 function cleanProduct(product) {
     const picture_formats = product?.attributes.picture?.data?.attributes?.formats;
@@ -9,7 +9,7 @@ function cleanProduct(product) {
                          picture_formats?.medium?.url ??
                          picture_formats?.small?.url ??
                          "/uploads/No_Image_Available.jpg";
-    const picture_url = CMS_URL + picture_file;
+    const picture_url = STRAPI_URL + picture_file;
     return {
         id: product?.id,
         title: product?.attributes.title,
@@ -20,11 +20,11 @@ function cleanProduct(product) {
 }
 
 export async function getProductsFromApi() {
-    const products = await fetchFromApi(`${CMS_URL}/api/products?populate=*`);
+    const products = await fetchFromApi(`${STRAPI_URL}/api/products?populate=*`);
     return products.data.map(cleanProduct);
 }
 
 export async function getOneProductFromApi(id: number) {
-    const product = await fetchFromApi(`${CMS_URL}/api/products/${id}?populate=*`);
+    const product = await fetchFromApi(`${STRAPI_URL}/api/products/${id}?populate=*`);
     return cleanProduct(product.data);
 }
