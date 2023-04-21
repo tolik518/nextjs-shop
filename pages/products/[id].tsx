@@ -11,17 +11,23 @@ export async function getStaticPaths() {
     }));
     return {
         paths,
-        fallback: false
+        fallback: "blocking" // generate a new page if the user visits a page that doesn't exist
     };
 }
 
 export async function getStaticProps({ params }) {
-    const product = await prd.getOneProductFromApi(params.id);
-    return {
-        props: {
-            product
-        }
-    };
+    try {
+        const product = await prd.getOneProductFromApi(params.id);
+        return {
+            props: {
+                product
+            }
+        };
+    } catch (error) {
+        return {
+            notFound: true
+        };
+    }
 }
 
 export default function ProductPage({ product }) {

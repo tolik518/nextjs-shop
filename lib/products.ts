@@ -24,6 +24,9 @@ export async function getProductsFromApi() {
 
 export async function getOneProductFromApi(id: number) {
     const response = await fetch(`http://localhost:1337/api/products/${id}?populate=*`);
+    if (!response.ok) {
+        throw new Error("Failed to fetch product");
+    }
     const products = await response.json();
     return cleanProduct(products.data);
 }
