@@ -10,7 +10,7 @@ export async function getStaticProps() {
     props: {
       products
     },
-    revalitade: 30 // get the data from the api every 30 seconds
+    revalidate: 30 // get the data from the api every 30 seconds
   };
 }
 
