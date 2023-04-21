@@ -11,7 +11,7 @@ export async function getStaticProps() {
       products
     },
     revalitade: 30 // get the data from the api every 30 seconds
-  }
+  };
 }
 
 const HomePage: React.FC = ({products}: any) => {

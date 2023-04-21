@@ -1,20 +1,17 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import Title from "../components/Title";
 import * as prd from "../lib/products"
 
-export async function getStaticProps() {
-  const products = await prd.getProductsFromApi();
 
-  return {
-    props: {
-      products
-    },
-    revalitade: 30 // get the data from the api every 30 seconds
-  }
-}
+const HomePage: React.FC = () => {
+  const [products, setProducts] = React.useState([]);
+  useEffect(() => {
+    prd.getProductsFromApi().then((products) => {
+      setProducts(products);
+    });
+  }, []);
 
-const HomePage: React.FC = ({products}: any) => {
   console.log(products);
   return (
     <>

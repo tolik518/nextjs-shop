@@ -3,15 +3,14 @@ import React from "react";
 import Title from "../components/Title";
 import * as prd from "../lib/products"
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const products = await prd.getProductsFromApi();
 
   return {
     props: {
       products
-    },
-    revalitade: 30 // get the data from the api every 30 seconds
-  }
+    }
+  };
 }
 
 const HomePage: React.FC = ({products}: any) => {
