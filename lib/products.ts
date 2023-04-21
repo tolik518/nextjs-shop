@@ -1,3 +1,6 @@
+import { fetchFromApi } from "./api";
+
+const CMS_URL = "http://localhost:1337";
 
 function cleanProduct(product) {
     const picture_formats = product?.attributes.picture?.data?.attributes?.formats;
@@ -6,7 +9,7 @@ function cleanProduct(product) {
                          picture_formats?.medium?.url ??
                          picture_formats?.small?.url ??
                          "/uploads/No_Image_Available.jpg";
-    const picture_url = "http://localhost:1337" + picture_file;
+    const picture_url = CMS_URL + picture_file;
     return {
         id: product?.id,
         title: product?.attributes.title,
@@ -17,16 +20,11 @@ function cleanProduct(product) {
 }
 
 export async function getProductsFromApi() {
-    const response = await fetch("http://localhost:1337/api/products?populate=*");
-    const products = await response.json();
+    const products = await fetchFromApi(`${CMS_URL}/api/products?populate=*`);
     return products.data.map(cleanProduct);
 }
 
 export async function getOneProductFromApi(id: number) {
-    const response = await fetch(`http://localhost:1337/api/products/${id}?populate=*`);
-    if (!response.ok) {
-        throw new Error("Failed to fetch product");
-    }
-    const products = await response.json();
-    return cleanProduct(products.data);
+    const product = await fetchFromApi(`${CMS_URL}/api/products/${id}?populate=*`);
+    return cleanProduct(product.data);
 }
