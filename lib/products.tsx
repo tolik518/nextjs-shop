@@ -1,15 +1,18 @@
 
 function cleanProduct(product) {
     const picture_formats = product?.attributes.picture?.data?.attributes?.formats;
-
+    const picture_file = product?.attributes.picture?.data?.attributes?.url ??
+                         picture_formats?.large?.url ??
+                         picture_formats?.medium?.url ??
+                         picture_formats?.small?.url ??
+                         "/uploads/No_Image_Available.jpg";
+    const picture_url = "http://localhost:1337" + picture_file;
     return {
         id: product?.id,
         title: product?.attributes.title,
         description: product?.attributes.description,
         price: product?.attributes.price,
-        picture: picture_formats?.large?.url ??
-                 picture_formats?.medium?.url ??
-                 picture_formats?.small?.url
+        picture: picture_url
     }
 }
 
