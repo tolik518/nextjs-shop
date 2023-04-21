@@ -20,11 +20,12 @@ export async function getStaticProps({ params }) {
     return {
         props: {
             product
-        }
+        },
+        revalidate: 60 // get the data from the api every 60 seconds
     };
 }
 
-export default function Product({ product }) {
+export default function ProductPage({ product }) {
     return (
         <div className='flex p-6 border rounded-xl'>
             <div className='h-300 w-300'>
@@ -47,3 +48,5 @@ export default function Product({ product }) {
         </div>
     );
 }
+
+

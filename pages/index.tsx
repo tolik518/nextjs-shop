@@ -15,7 +15,6 @@ export async function getStaticProps() {
 }
 
 const HomePage: React.FC = ({products}: any) => {
-
   return (
     <>
       <main>
