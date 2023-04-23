@@ -23,7 +23,7 @@ const HomePage: React.FC = ({products}: any) => {
   return (
     <>
       <main>
-        <ul>
+        <ul className="2xl:mx-10 xl:mx-10 md:mx-0 grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
           {products.map((product) => (
             <li key={ product.id }>
               <ProductCard product={product}/>
